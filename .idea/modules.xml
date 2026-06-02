@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/IdeaProjects.iml" filepath="$PROJECT_DIR$/.idea/IdeaProjects.iml" />
+      <module fileurl="file://$PROJECT_DIR$/POOCusoJavaUdemi/POOCusoJavaUdemi.iml" filepath="$PROJECT_DIR$/POOCusoJavaUdemi/POOCusoJavaUdemi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PooHerencia/PooHerencia.iml" filepath="$PROJECT_DIR$/PooHerencia/PooHerencia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProyectoOrdenCompra/ProyectoOrdenCompra.iml" filepath="$PROJECT_DIR$/ProyectoOrdenCompra/ProyectoOrdenCompra.iml" />
+      <module fileurl="file://$PROJECT_DIR$/QuantumInvert_equipo7/QuantumInvert_equipo7.iml" filepath="$PROJECT_DIR$/QuantumInvert_equipo7/QuantumInvert_equipo7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Seccion27/Seccion27.iml" filepath="$PROJECT_DIR$/Seccion27/Seccion27.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Seccion29/Seccion29.iml" filepath="$PROJECT_DIR$/Seccion29/Seccion29.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Seccion30/Seccion30.iml" filepath="$PROJECT_DIR$/Seccion30/Seccion30.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Seciion34/Seciion34.iml" filepath="$PROJECT_DIR$/Seciion34/Seciion34.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea27 EncuentraTuVuelo/Tarea27 EncuentraTuVuelo.iml" filepath="$PROJECT_DIR$/Tarea27 EncuentraTuVuelo/Tarea27 EncuentraTuVuelo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea28/Tarea28.iml" filepath="$PROJECT_DIR$/Tarea28/Tarea28.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea29/Tarea29.iml" filepath="$PROJECT_DIR$/Tarea29/Tarea29.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tarea30/Tarea30.iml" filepath="$PROJECT_DIR$/Tarea30/Tarea30.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarea25ProyectoMamiferos/tarea25ProyectoMamiferos.iml" filepath="$PROJECT_DIR$/tarea25ProyectoMamiferos/tarea25ProyectoMamiferos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tipoEnteroPrimitivo/tipoEnteroPrimitivo.iml" filepath="$PROJECT_DIR$/tipoEnteroPrimitivo/tipoEnteroPrimitivo.iml" />
+    </modules>
+  </component>
+</project>
