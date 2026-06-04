@@ -1,5 +1,9 @@
 package org.endika.java.jdbc.org.endika.java;
 
+import org.endika.java.jdbc.org.endika.java.model.Product;
+import org.endika.java.jdbc.org.endika.java.repository.Impl.ProductRepositoryImpl;
+import org.endika.java.jdbc.org.endika.java.repository.ProductRepository;
+
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
@@ -18,6 +22,8 @@ public class jdbc extends JFrame {
     private JTextField priceField = new JTextField();
     private JTextField quantityField = new JTextField();
     private ProductTableModel tableModel = new ProductTableModel();
+    private ProductRepository productRepository;
+    private static String xRoja = "\u274C";
 
     private long id;
     private int row;
@@ -27,6 +33,7 @@ public class jdbc extends JFrame {
         p = getContentPane();
         p.setLayout(new BorderLayout(20, 10));
 
+        productRepository = new ProductRepositoryImpl();
         JPanel formPanel = new JPanel(new GridLayout(4, 2, 20, 10));
         formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         JButton buttonSave = new JButton("Guardar");
@@ -70,8 +77,10 @@ public class jdbc extends JFrame {
                 JOptionPane.showMessageDialog(null, errors.toArray(),
                         "Errores validando los campos!!", JOptionPane.ERROR_MESSAGE);
             }else{
+                Product product = productRepository.save(new Product(id==0 ? null : id, name, price, quantity));
+
                 if (id == 0) {
-                    Object[] producto = new Object[]{System.currentTimeMillis(), name, price, quantity, "X"};
+                    Object[] producto = new Object[]{product.getId(), name, price, quantity,"     " + xRoja};
                     tableModel.getRows().add(producto);
                     tableModel.fireTableDataChanged();
                     System.out.println(producto[1]);
@@ -105,6 +114,7 @@ public class jdbc extends JFrame {
                                     "?", "Estas eliminando un Registro", JOptionPane.OK_OPTION, JOptionPane.QUESTION_MESSAGE);
 
                     if (option == JOptionPane.OK_OPTION) {
+                        productRepository.delete((long)tableModel.getValueAt(row, 0));
                         tableModel.getRows().remove(row);
                         tableModel.fireTableDataChanged();
                     }
@@ -145,8 +155,18 @@ public class jdbc extends JFrame {
 
     private class ProductTableModel extends AbstractTableModel {
 
-        private String[] columns = {"id", "Nombre", "Precio", "Cantidad", "Delete"};
+        private String[] columns = {"id", "Nombre", "Precio", "Cantidad", "Eliminar"};
         private List<Object[]> rows = new ArrayList<>();
+
+        public ProductTableModel() {
+            ProductRepository productRepository  = new ProductRepositoryImpl();
+            List<Product> products = productRepository.findAll();
+            for(Product p : products){
+                Object[]row = {p.getId(), p.getName(), p.getPrice(), p.getQuantity(), xRoja};
+                rows.add(row);
+            }
+        }
+
 
         public List<Object[]> getRows() {
             return rows;

@@ -55,7 +55,6 @@ public class ProductRepositoryImpl implements ProductRepository {
                 }
             }
 
-
         }catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,10 +63,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        // 1. Corregimos la condición: Si tiene ID (y es mayor que 0) es UPDATE, si no, es INSERT
+
         boolean isUpdate = (product.getId() != null && product.getId() > 0);
 
-        // Corregidos los errores de sintaxis en el SQL
         String sql = isUpdate
                 ? "UPDATE products SET name=?, price=?, quantity=? WHERE id=?"
                 : "INSERT INTO products (name, price, quantity) VALUES(?, ?, ?)";
@@ -75,7 +73,6 @@ public class ProductRepositoryImpl implements ProductRepository {
         try (Connection conn = ConnectionJdbc.getConnection();
              PreparedStatement preStmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
-            // Estos 3 parámetros son comunes para ambos casos
             preStmt.setString(1, product.getName());
             preStmt.setFloat(2, product.getPrice());
             preStmt.setFloat(3, product.getQuantity());
@@ -90,29 +87,36 @@ public class ProductRepositoryImpl implements ProductRepository {
                 throw new SQLException("No se pudo guardar el producto, ninguna fila afectada.");
             }
 
-            // 2. Manejo de la respuesta
+
             if (!isUpdate) {
-                // Si es un INSERT, obtenemos EL ID generado por la BD
+
                 try (ResultSet rs = preStmt.getGeneratedKeys()) {
                     if (rs.next()) {
-                        // El ResultSet de las llaves usualmente solo trae una columna: el ID generado
+
                         long generatedId = rs.getLong(1);
-                        product.setId(generatedId); // Se lo asignamos al objeto
+                        product.setId(generatedId);
                     }
                 }
             }
 
-            // Devolvemos el mismo producto modificado (con su ID correspondiente)
             return product;
 
         } catch (SQLException e) {
             e.printStackTrace();
-            return null; // O relanzar una excepción personalizada
+            return null;
         }
     }
 
     @Override
     public void delete(long id) {
+        try (Connection conn = ConnectionJdbc.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("DELETE from products where id=?")){
 
+            stmt.setLong(1,id);
+            stmt.executeUpdate();
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
